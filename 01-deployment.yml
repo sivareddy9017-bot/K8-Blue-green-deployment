@@ -5,7 +5,6 @@ metadata:
   # these labels are replicaset labels
   labels:
     project: roboshop
-    purpose: rs-demo
     tier: frontend
     component: frontend
     version: blue
@@ -15,18 +14,18 @@ spec:
     # using these labels replica set selects the pod
     matchLabels:
       project: roboshop
-      purpose: rs-demo
       tier: frontend
       component: frontend
+      version: blue
   # This is pod definition, pod is subset of replicaset
   template:
     metadata:
       labels:
         project: roboshop
-        purpose: rs-demo
         tier: frontend
         component: frontend
+        version: blue
     spec:
       containers:
-      - name: nginx
+      - name: nginx-blue
         image: joindevops/blue-green:0.0.1
