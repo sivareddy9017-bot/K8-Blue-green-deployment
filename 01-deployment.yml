@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-blue
+  # these labels are replicaset labels
+  labels:
+    project: roboshop
+    purpose: rs-demo
+    tier: frontend
+    component: frontend
+    version: blue
+spec:
+  replicas: 4
+  selector:
+    # using these labels replica set selects the pod
+    matchLabels:
+      project: roboshop
+      purpose: rs-demo
+      tier: frontend
+      component: frontend
+  # This is pod definition, pod is subset of replicaset
+  template:
+    metadata:
+      labels:
+        project: roboshop
+        purpose: rs-demo
+        tier: frontend
+        component: frontend
+    spec:
+      containers:
+      - name: nginx
+        image: joindevops/blue-green:0.0.1
